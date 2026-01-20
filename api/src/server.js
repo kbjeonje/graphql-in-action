@@ -1,34 +1,33 @@
-import { graphqlHTTP } from 'express-graphql';
-import { schema } from './schema';  // schema만 import
+/** GIA NOTES
+ *
+ * Use the code below to start a bare-bone express web server
 
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 
-import * as config from '../../../../graphql_study/graphql-in-action/api/src/config';
+import * as config from './config';
 
 async function main() {
-    const server = express();
+  const server = express();
+  server.use(cors());
+  server.use(morgan('dev'));
+  server.use(bodyParser.urlencoded({ extended: false }));
+  server.use(bodyParser.json());
+  server.use('/:fav.ico', (req, res) => res.sendStatus(204));
 
-    server.use(cors());
-    server.use(morgan('dev'));
-    server.use(bodyParser.urlencoded({ extended: false }));
-    server.use(bodyParser.json());
-    server.use('/:fav.ico', (req, res) => res.sendStatus(204));
+  // Example route
+  server.use('/', (req, res) => {
+    res.send('Hello World');
+  });
 
-    // rootValue 제거하고 schema만 전달
-    server.use(
-        '/',
-        graphqlHTTP({
-            schema,          // schema만 있으면 충분
-            graphiql: true,  // GraphiQL IDE 활성화 (브라우저에서 테스트 편함)
-        })
-    );
-
-    server.listen(config.port, () => {
-        console.log(`Server URL: http://localhost:${config.port}/`);
-    });
+  // This line rus the server
+  server.listen(config.port, () => {
+    console.log(`Server URL: http://localhost:${config.port}/`);
+  });
 }
 
 main();
+
+*/
