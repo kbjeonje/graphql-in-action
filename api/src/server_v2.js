@@ -1,5 +1,22 @@
+/*
+import {graphql} from 'graphql';
+
+import { schema, rootValue } from './schema';
+
+const executeGraphQLRequest = async request => {
+    const resp = await graphql(schema, request, rootValue);
+    console.log(resp.data);
+};
+
+executeGraphQLRequest(process.argv[2]);
+*/
+
+/*
+    - Express라는 패키지를 사용해서 일반 HTTP 서버를 만들고, express-graphql이라는 패키지를 사용해서 그 서버를 GraphQL 서비스로 연결
+*/
+
 import { graphqlHTTP } from 'express-graphql';
-import { schema } from './schema';  // schema만 import
+import { schema } from './schema/index_v2.js';  // schema만 import
 
 import express from 'express';
 import bodyParser from 'body-parser';
